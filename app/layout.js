@@ -1,7 +1,8 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import {SkeletonTheme} from "react-loading-skeleton";
+import Providers from "@/store/provider";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
+import './globals.scss'
 
 export const metadata = {
   title: 'Create Next App',
@@ -9,9 +10,17 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  )
+    return (
+        <html lang="en">
+            <body>
+                <Providers>
+                    <SkeletonTheme baseColor='rgba(82,82,82,1)' highlightColor='rgba(227,227,227,0.08)'>
+                        <NavBar/>
+                        {children}
+                        <Footer/>
+                    </SkeletonTheme>
+                </Providers>
+            </body>
+        </html>
+    )
 }

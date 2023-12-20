@@ -1,0 +1,33 @@
+.wrapper {
+  position: relative;
+
+  input {
+    min-width: 300px;
+    background-color: transparent;
+    border: 2px solid #7a7a7a;
+    border-radius: 24px;
+    color: #fff;
+    transition: 200ms;
+    padding: 8px 40px 8px 16px;
+
+    &:focus {
+      border-color: #fff;
+      outline: none;
+    }
+  }
+  button {
+    background: none;
+    border: none;
+    color: #7a7a7a;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 200ms;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}

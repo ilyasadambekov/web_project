@@ -1,0 +1,50 @@
+.wrapper {
+
+  section:first-of-type {
+    height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1507702553912-a15641e827c8?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    position: relative;
+
+    >div {
+      position: absolute;
+      left: 128px;
+      bottom: 86px;
+
+      h1 {
+        margin-bottom: 36px;
+      }
+      h5 {
+        margin-bottom: 48px;
+      }
+    }
+  }
+
+  section:nth-of-type(2) {
+    padding: 128px 48px 86px;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    >a {
+
+      div {
+        margin: 0 auto 86px;
+      }
+    }
+    >div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow-x: scroll;
+
+      >a, >div {
+        margin-right: 36px;
+
+        &:last-of-type {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 86px;
+
+  >div:first-of-type {
+    width: 260px;
+    position: relative;
+    padding: 48px 32px;
+    margin-right: 24px;
+
+    >h2 {
+      margin-bottom: 16px;
+    }
+    div {
+      display: flex;
+      margin-bottom: 8px;
+    }
+  }
+  >div:nth-of-type(2) {
+    width: 100%;
+    padding: 36px 32px;
+
+    >h2 {
+      margin-bottom: 12px;
+    }
+    >div:first-of-type {
+      display: grid;
+      grid-template-columns: repeat(3, 332px);
+      grid-gap: 32px;
+      justify-content: space-between;
+    }
+  }
+}
