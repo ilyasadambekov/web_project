@@ -5,10 +5,9 @@
   margin-top: 86px;
 
   >div:first-of-type {
-    width: 260px;
+    width: 300px;
     position: relative;
-    padding: 48px 32px;
-    margin-right: 24px;
+    padding: 48px 0 48px 128px;
 
     >h2 {
       margin-bottom: 16px;
@@ -20,7 +19,7 @@
   }
   >div:nth-of-type(2) {
     width: 100%;
-    padding: 36px 32px;
+    padding: 36px 128px;
 
     >h2 {
       margin-bottom: 12px;

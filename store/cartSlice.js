@@ -15,10 +15,13 @@ const cartSlice = createSlice({
             if(state.products.filter(item => item.id === action.payload.id)[0].amount === 1) {
                 state.products = state.products.filter(item => item.id !== action.payload.id)
             } else state.products.map(item => item.id === action.payload.id && item.amount--)
+        },
+        terminateFromCart(state, action) {
+            state.products = state.products.filter(item => item.id !== action.payload.id)
         }
     }
 })
 
-export const {addToCart, removeFromCart} = cartSlice.actions
+export const {addToCart, removeFromCart, terminateFromCart} = cartSlice.actions
 
 export default cartSlice.reducer

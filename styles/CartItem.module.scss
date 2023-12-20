@@ -11,14 +11,42 @@
     >div:first-of-type {
       height: 54px;
       width: 54px;
-      background-color: #fff;
-      border: 12px solid #fff;
-      border-radius: 4px;
       position: relative;
       margin-right: 8px;
 
-      img {
-        object-fit: contain;
+      >a {
+        height: 54px;
+        width: 54px;
+        background-color: #fff;
+        border: 12px solid #fff;
+        border-radius: 4px;
+        display: block;
+        position: relative;
+        cursor: pointer;
+
+        img {
+          object-fit: contain;
+        }
+      }
+      >div {
+        height: 18px;
+        width: 18px;
+        background-color: #7a7a7a;
+        border-radius: 50%;
+        color: #000;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -9px;
+        right: -9px;
+        transition: 200ms;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #b2b2b2;
+        }
       }
     }
     >div:last-of-type {
@@ -26,8 +54,14 @@
 
       h3 {
         white-space: nowrap;
+        text-overflow: ellipsis;
         overflow: hidden;
         margin-bottom: 4px;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

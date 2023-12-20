@@ -21,9 +21,7 @@ export default function Modal() {
                 style={ {opacity: modal.status === 'closed' && '0', pointerEvents: modal.status === 'closed' && 'none'} }
                 onClick={() => dispatch(closeModal())}
             />
-            <div>
-                {modalBody()}
-            </div>
+            {modalBody()}
         </>
     )
 }

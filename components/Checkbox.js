@@ -18,7 +18,7 @@ export default function Checkbox({item}) {
     return(
         <div>
             <input id={item} type='checkbox' style={ {marginRight: '8px'} } checked={isChecked} onChange={() => toggle()}/>
-            <label htmlFor={item}><h5 style={ {textTransform: 'capitalize'} }>{item}</h5></label>
+            <label htmlFor={item}><h5 style={ {textTransform: 'capitalize', whiteSpace: 'nowrap'} }>{item}</h5></label>
         </div>
     )
 }

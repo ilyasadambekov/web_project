@@ -1,13 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
-import {FaXmark} from "react-icons/fa6";
 import {closeModal} from "@/store/modalSlice";
+import {FaXmark} from "react-icons/fa6";
 import CartItem from "@/components/CartItem";
 import styles from 'styles/SideCart.module.scss'
 
 export default function SideCart() {
     const modal = useSelector(state => state.modal)
     const cart = useSelector(state => state.cart)
-    console.log(cart);
 
     const dispatch = useDispatch()
 
@@ -21,10 +20,8 @@ export default function SideCart() {
             </div>
             <div>
                 <div>
-                    {!cart.products.length && <h3>Your cart is empty</h3>}
-                    {
-                        cart.products.map(item => <CartItem key={item.id} item={item}/>)
-                    }
+                    {!cart.products.length ? <h3>Your cart is empty</h3> :
+                    cart.products.map(item => <CartItem key={item.id} item={item}/>)}
                 </div>
                 {cart.products.length &&
                     <div>

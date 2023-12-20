@@ -33,26 +33,30 @@ export default function Product({ params }) {
                     {!isLoading && <Image src={productData.image} alt='image' fill={true}/>}
                 </div>
                 <div>
-                    <h5>{productData.category}</h5>
-                    <h1>{productData.title}</h1>
-                    <h4>{productData.description}</h4>
-                    <h3>Select color</h3>
+                    <h5>{isLoading ? <Skeleton width={48}/> : productData.category}</h5>
+                    <h1>{isLoading ? <Skeleton/> : productData.title}</h1>
+                    <h4>{isLoading ? <Skeleton count={4}/> : productData.description}</h4>
                     <div>
-                        {['Black', 'White'].map(item =>
-                            <div onClick={() => setForm({...form, color: item})} style={ {borderColor: form.color === item ? '#fff' : '#7a7a7a'} }>
-                                <h5>{item}</h5>
-                            </div>
-                        )}
+                        <h3>Select color</h3>
+                        <div>
+                            {['Black', 'White'].map(item =>
+                                <div onClick={() => setForm({...form, color: item})} style={ {borderColor: form.color === item ? '#fff' : '#7a7a7a'} }>
+                                    <h5>{item}</h5>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    <h3>Select size</h3>
                     <div>
-                        {['XS', 'S', 'M', 'L', 'XL'].map(item =>
-                            <div onClick={() => setForm({...form, size: item})} style={ {borderColor: form.size === item ? '#fff' : '#7a7a7a'} }>
-                                <h5>{item}</h5>
-                            </div>
-                        )}
+                        <h3>Select size</h3>
+                        <div>
+                            {['XS', 'S', 'M', 'L', 'XL'].map(item =>
+                                <div onClick={() => setForm({...form, size: item})} style={ {borderColor: form.size === item ? '#fff' : '#7a7a7a'} }>
+                                    <h5>{item}</h5>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    {!isLoading && <h1>{`$${productData.price}`}</h1>}
+                    <h1>{isLoading ? <Skeleton width={48}/> : `$${productData.price}`}</h1>
                     <div onClick={() => handleAddition()}>
                         <h3>ADD TO THE CART</h3>
                     </div>

@@ -10,7 +10,7 @@
     transition: 200ms;
     padding: 8px 40px 8px 16px;
 
-    &:focus {
+    &:hover, &:focus {
       border-color: #fff;
       outline: none;
     }
