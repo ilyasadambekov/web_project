@@ -4,21 +4,44 @@ const filtersSlice = createSlice({
     name: 'filters',
     initialState: {
         query: '',
-        categories: []
+        sortBy: '',
+        category: '',
+        price: {
+            min: '',
+            max: ''
+        }
     },
     reducers: {
         setQuery(state, action) {
             state.query = action.payload
         },
-        addCategory(state, action) {
-            state.categories.push(action.payload)
+        setSortBy(state, action) {
+            state.sortBy = action.payload
         },
-        removeCategory(state, action) {
-            state.categories = state.categories.filter(item => item !== action.payload)
+        setCategory(state, action) {
+            state.category = action.payload
+        },
+        setPrice(state, action) {
+            state.price = action.payload
+        },
+        clearFilters(state) {
+            state.query = ''
+            state.sortBy = ''
+            state.category = ''
+            state.price = {
+                min: '',
+                max: ''
+            }
         }
     }
 })
 
-export const {setQuery, addCategory, removeCategory} = filtersSlice.actions
+export const {
+    setQuery,
+    setSortBy,
+    setCategory,
+    setPrice,
+    clearFilters
+} = filtersSlice.actions
 
 export default filtersSlice.reducer

@@ -2,24 +2,11 @@
   min-height: 100vh;
   display: flex;
   justify-content: space-between;
-  margin-top: 86px;
+  padding: 100px 128px;
 
-  >div:first-of-type {
-    width: 300px;
-    position: relative;
-    padding: 48px 0 48px 128px;
-
-    >h2 {
-      margin-bottom: 16px;
-    }
-    div {
-      display: flex;
-      margin-bottom: 8px;
-    }
-  }
   >div:nth-of-type(2) {
     width: 100%;
-    padding: 36px 128px;
+    margin-left: 200px;
 
     >h2 {
       margin-bottom: 12px;
@@ -29,6 +16,7 @@
       grid-template-columns: repeat(3, 332px);
       grid-gap: 32px;
       justify-content: space-between;
+      margin-bottom: 36px;
     }
   }
 }

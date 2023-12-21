@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
 
-    >div {
+    >div, >a {
       height: 36px;
       width: 36px;
       border: 2px solid #7a7a7a;
@@ -28,7 +28,7 @@
       justify-content: center;
       position: relative;
       transition: 100ms;
-      margin-left: 48px;
+      margin-left: 24px;
       cursor: pointer;
 
       div {

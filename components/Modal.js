@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {closeModal} from "@/store/modalSlice";
 import SideCart from "@/components/SideCart";
+import LoginModal from "@/components/LoginModal";
 
 export default function Modal() {
     const modal = useSelector(state => state.modal)
@@ -10,6 +11,7 @@ export default function Modal() {
     const modalBody = () => {
         switch(modal.status) {
             case 'cart': return <SideCart/>
+            case 'login': return <LoginModal/>
             default: return null
         }
     }
