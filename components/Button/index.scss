@@ -1,0 +1,114 @@
+.ui-button {
+  width: 100%;
+  font-size: 12px;
+  font-weight: 400;
+  flex-shrink: 0;
+  position: relative;
+  padding: 15px;
+
+  &-wrap {
+    transition: 0.2s ease;
+    transform-origin: top;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+  }
+
+  &-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleY(0);
+    overflow: hidden;
+    transition: 0.4s ease;
+    transform-origin: bottom;
+
+    span {
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      display: block;
+      position: relative;
+      animation: rotate 0.6s linear infinite;
+    }
+
+    span::before,
+    span::after {
+      content: '';
+      border: 2px solid #7a7a7a;
+      border-radius: 50%;
+      box-sizing: border-box;
+      position: absolute;
+      inset: 0;
+      animation: prixClipFix 2s linear infinite alternate-reverse;
+    }
+    span::after {
+      transform: rotate3d(90, 90, 0, 180deg);
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes prixClipFix {
+      0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+      }
+      50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+      }
+      75%,
+      100% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+      }
+    }
+  }
+
+  &--text {
+    color: #fff;
+    text-align: left;
+    padding: 2px;
+
+    .ui-button-wrap {
+      justify-content: left;
+    }
+  }
+
+  &--loading {
+    pointer-events: none;
+
+    .ui-button-loading {
+      transform: translate(-50%, -50%) scaleY(1);
+    }
+
+    .ui-button-wrap {
+      transform: scaleY(0);
+    }
+  }
+
+  &--primary {
+    background-color: #000;
+    color: #fff;
+  }
+
+  &--secondary {
+    background-color: #fff;
+    color: #000;
+  }
+
+  &--outlined {
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+  &--disabled {
+    opacity: 0.7;
+    filter: grayscale(1);
+  }
+}

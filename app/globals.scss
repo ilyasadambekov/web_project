@@ -23,7 +23,7 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
-  -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }
 
 h1 {
@@ -60,33 +60,4 @@ h6 {
   color: #fff;
   font-weight: 400;
   font-size: 10px;
-}
-
-.btn1 {
-  width: 152px;
-  border-bottom: 1px solid #fff;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: 200ms ease-in-out;
-  padding-bottom: 8px;
-  cursor: pointer;
-
-  &:hover {
-    width: 198px;
-    padding-inline: 16px;
-  }
-}
-
-.modal {
-  height: 100vh;
-  width: 100vw;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: scroll;
-  transition: 400ms;
-  z-index: 1;
 }

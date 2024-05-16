@@ -1,0 +1,65 @@
+.wrapper {
+  border-bottom: 1px solid #7a7a7a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+
+  >div:first-of-type {
+    display: flex;
+    gap: 8px;
+
+    >div:first-of-type {
+      height: 54px;
+      width: 54px;
+      position: relative;
+
+      >a {
+        height: 54px;
+        width: 54px;
+        background-color: #fff;
+        border: 8px solid #fff;
+        border-radius: 4px;
+        display: block;
+        position: relative;
+        cursor: pointer;
+
+        img {
+          object-fit: contain;
+        }
+      }
+      .deleteBtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+      }
+    }
+    >div:last-of-type {
+      width: 146px;
+
+      h3 {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-bottom: 4px;
+      }
+    }
+  }
+  >div:last-of-type {
+
+    h3 {
+      text-align: end;
+      margin-bottom: 8px;
+    }
+    >div {
+      width: 100px;
+      border: 1px solid #7a7a7a;
+      border-radius: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+      padding: 8px 0;
+    }
+  }
+}

@@ -1,76 +1,38 @@
 .wrapper {
-  height: 100vh;
-  padding: 128px 224px;
+  min-height: 100vh;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 128px;
+  padding: 100px 32px;
+  margin: 0 auto;
 
-  >div:first-of-type {
-    display: flex;
+  > div:first-of-type {
+    height: 100%;
+    width: 600px;
+    position: relative;
 
-    >div:first-of-type {
-      height: 700px;
-      min-width: 800px;
-      background-color: #fff;
-      border: 80px solid #fff;
-      position: relative;
-      margin-right: 124px;
-
-      img {
-        object-fit: contain;
-      }
+    img {
+      object-fit: contain;
     }
-    >div:last-of-type {
-      width: 420px;
+  }
 
-      >h5, >h4 {
-        margin-bottom: 24px;
-      }
-      >h1 {
-        margin: 36px 0 16px;
+  > div:nth-of-type(2) {
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 
-        &:first-of-type {
-          margin: 0 0 24px;
-        }
-      }
-      >h5:first-letter, >h4:first-letter {
-        text-transform: capitalize;
-      }
-      >div:not(div:last-of-type) {
-        margin-bottom: 24px;
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
 
-        h3 {
-          margin-bottom: 16px;
-        }
-        >div {
-          display: flex;
-          align-items: center;
-
-          div {
-            height: 50px;
-            width: 60px;
-            border: 1px solid;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 8px;
-            cursor: pointer;
-          }
-        }
-      }
-      >div:last-of-type {
-        height: 50px;
-        border: 1px solid #fff;
-        background-color: #000;
+      > div {
         display: flex;
         align-items: center;
-        justify-content: center;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #fff;
-
-          h3 {
-            color: #000;
-          }
-        }
+        gap: 8px;
       }
     }
   }

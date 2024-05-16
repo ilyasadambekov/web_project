@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  >div {
+    display: flex;
+    flex-direction: column;
+
+    >h4 {
+      color: #b2b2b2;
+      margin-bottom: 8px;
+    }
+
+    >div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .input {
+        width: 100px;
+        border-radius: 16px
+      }
+    }
+  }
+}

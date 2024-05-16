@@ -1,0 +1,11 @@
+.wrapper {
+  position: relative;
+
+  .btn {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 5px;
+  }
+}

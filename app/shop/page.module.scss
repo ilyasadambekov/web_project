@@ -1,22 +1,11 @@
 .wrapper {
   min-height: 100vh;
-  display: flex;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: auto auto;
   justify-content: space-between;
-  padding: 100px 128px;
-
-  >div:nth-of-type(2) {
-    width: 100%;
-    margin-left: 200px;
-
-    >h2 {
-      margin-bottom: 12px;
-    }
-    >div:first-of-type {
-      display: grid;
-      grid-template-columns: repeat(3, 332px);
-      grid-gap: 32px;
-      justify-content: space-between;
-      margin-bottom: 36px;
-    }
-  }
+  gap: 32px;
+  position: relative;
+  padding: 100px 32px;
+  margin: 0 auto;
 }

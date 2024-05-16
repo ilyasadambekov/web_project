@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  margin-left: 44px;
+
+  .btnLeft {
+    position: absolute;
+    transform: translateX(calc(-100% - 8px));
+  }
+}

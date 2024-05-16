@@ -1,0 +1,18 @@
+.modal-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  transition: 400ms;
+  pointer-events: none;
+  z-index: 1;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

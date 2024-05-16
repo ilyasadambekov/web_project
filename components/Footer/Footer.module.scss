@@ -1,0 +1,24 @@
+.wrapper {
+
+  section {
+    height: 752px;
+    background-color: #383838;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px;
+
+    >div:first-of-type {
+
+      h1 {
+        margin-bottom: 64px;
+      }
+    }
+    >div:last-of-type {
+      height: 620px;
+      width: 480px;
+      background-image: url("https://images.unsplash.com/photo-1475180098004-ca77a66827be?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+      background-size: 620px;
+    }
+  }
+}
