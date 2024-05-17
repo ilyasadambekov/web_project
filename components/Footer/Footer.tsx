@@ -1,6 +1,6 @@
 'use client'
-import styles from '@/components/Footer/Footer.module.scss';
-import Button from "@/components/Button";
+import styles from '../Footer/Footer.module.scss';
+import Button from "../Button";
 import {useRouter} from "next/navigation";
 import {FaArrowRight} from "react-icons/fa6";
 

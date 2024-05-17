@@ -1,9 +1,9 @@
 .wrapper {
   width: 100vw;
   background-color: #000;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  justify-content: space-between;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -11,13 +11,18 @@
   padding: 16px 48px;
   margin-bottom: 24px;
 
-  h1 span {
-    display: inline-block;
+  h1 {
+    justify-self: start;
+
+    span {
+      display: inline-block;
+    }
   }
 
   >div:last-of-type {
     display: flex;
     align-items: center;
+    justify-self: end;
     gap: 16px;
   }
 }

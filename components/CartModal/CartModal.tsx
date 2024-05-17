@@ -1,14 +1,14 @@
-import {useSelector} from "react-redux";
+import {useAppSelector} from '../../hooks/useAppSelector';
 import {useState} from "react";
-import {$class} from "@/utils";
+import {$class} from "../../utils";
 import {FaXmark} from "react-icons/fa6";
-import CartItem from "@/components/CartItem/CartItem";
-import Button from "@/components/Button";
-import styles from '@/components/CartModal/CartModal.module.scss';
+import CartItem from "../CartItem/CartItem";
+import Button from "../Button";
+import styles from '../CartModal/CartModal.module.scss';
 
-export default function CartModal({isActive, close}) {
+export default function CartModal({isActive, close}: ModalProps) {
   const [loading, setLoading] = useState(false);
-  const cart = useSelector(state => state.cart);
+  const cart = useAppSelector(state => state.cart);
 
   return (
     <div className={$class(styles.cartModal, [styles.cartModalActive, isActive])}>
@@ -33,7 +33,7 @@ export default function CartModal({isActive, close}) {
           <div>
             <div>
               <h4>Total</h4>
-              <h3>${cart.products.map(item => item.price * item.amount).reduce((a, b) => a + b, 0)}</h3>
+              <h3>${cart.products.map(item => parseInt(item.price) * item.amount).reduce((a, b) => a + b, 0)}</h3>
             </div>
             <Button variant='secondary' loading={loading} onClick={() => setLoading(true)}>
               Proceed to checkout

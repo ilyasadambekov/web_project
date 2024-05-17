@@ -1,9 +1,16 @@
 import styles from '/components/ProductCard/ProductCard.module.scss'
 import Image from "next/image";
 import Link from "next/link";
-import Clickable from "@/components/Clickable";
+import Clickable from "../Clickable";
 
-export default function ProductCard({id, image, title, price}) {
+interface IProps {
+  id: string,
+  image: string,
+  title: string,
+  price: string
+}
+
+export default function ProductCard({id, image, title, price}: IProps) {
 
   return (
     <Link href={`/shop/${id}`}>

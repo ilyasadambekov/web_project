@@ -1,8 +1,8 @@
-import {useDispatch, useSelector} from "react-redux";
-import {clearActiveModal, closeModal} from "@/store/modalSlice";
-import {$class} from "@/utils";
-import CartModal from "@/components/CartModal/CartModal";
-import AuthModal from "@/components/AuthModal/AuthModal";
+import {useAppSelector} from '../../hooks/useAppSelector';
+import {useActions} from '../../hooks/useActions';
+import {$class} from "../../utils";
+import CartModal from "../CartModal/CartModal";
+import AuthModal from "../AuthModal/AuthModal";
 import './index.scss';
 
 const modals = {
@@ -11,13 +11,13 @@ const modals = {
 };
 
 export default function ModalManager() {
-  const {activeModal, isOpen} = useSelector(state => state.modal);
-  const dispatch = useDispatch();
+  const {activeModal, isOpen} = useAppSelector(state => state.modal);
+  const {closeModal, clearActiveModal} = useActions();
 
   const close = () => {
-    dispatch(closeModal());
+    closeModal();
     setTimeout(() => {
-      dispatch(clearActiveModal());
+      clearActiveModal();
     }, 200);
   };
 

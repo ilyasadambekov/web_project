@@ -1,8 +1,15 @@
 import {FaAngleLeft, FaAngleRight} from "react-icons/fa6";
-import Button from "@/components/Button";
-import styles from '@/components/PaginationBlock/PaginationBlock.module.scss'
+import Button from "../Button";
+import styles from '../PaginationBlock/PaginationBlock.module.scss'
 
-export default function PaginationBlock({items, amountOfItemsOnPage = 12, page, setPage}) {
+interface IProps {
+  items: Product[],
+  amountOfItemsOnPage?: number,
+  page: number,
+  setPage: React.Dispatch<React.SetStateAction<number>>
+}
+
+export default function PaginationBlock({items, amountOfItemsOnPage = 12, page, setPage}: IProps) {
   const amountOfPages = Math.ceil(items.length / amountOfItemsOnPage)
 
   return (

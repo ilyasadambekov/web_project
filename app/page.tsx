@@ -1,9 +1,9 @@
 'use client';
-import {useGetProductsQuery} from "@/store/api";
+import {useGetProductsQuery} from "../store/api";
 import {useRouter} from "next/navigation";
 import {FaArrowRight} from "react-icons/fa6";
-import ProductCard from "@/components/ProductCard/ProductCard";
-import Button from "@/components/Button";
+import ProductCard from "../components/ProductCard/ProductCard";
+import Button from "../components/Button";
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -15,8 +15,10 @@ export default function Home() {
       <section>
         <div>
           <h1>Introducing the Latest Summer Styles</h1>
-          <h5>This season, our new summer collection embraces designs to provide comfort and<br/>style - ensuring you're
-            well-prepared for whatever comes your way.</h5>
+          <h5>
+            This season, our new summer collection embraces designs to provide comfort and<br/>
+            style - ensuring you're well-prepared for whatever comes your way.
+          </h5>
           <Button variant="outlined" onClick={() => router.push('/shop')}>
             Explore our products
             <FaArrowRight/>

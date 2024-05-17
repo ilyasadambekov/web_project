@@ -1,34 +1,32 @@
 'use client';
 import {useState} from "react";
-import {useDispatch} from "react-redux";
-import {useGetProductQuery} from "@/store/api";
-import {addToCart} from "@/store/cartSlice";
-import {openModal} from "@/store/modalSlice";
+import {useActions} from '../../../hooks/useActions';
+import {useGetProductQuery} from "../../../store/api";
 import Image from "next/image";
-import Button from "@/components/Button";
+import Button from "../../../components/Button";
 import styles from './page.module.scss';
 
-export default function Product({params}) {
+export default function Product({params}: {params: {id: string}}) {
   const [form, setForm] = useState({color: '', size: ''});
-  const {data: productData = [], isLoading} = useGetProductQuery(parseInt(params.id));
-  const dispatch = useDispatch();
+  const {data: productData = null, isLoading} = useGetProductQuery(params.id);
+  const {addToCart, openModal} = useActions();
 
   const handleAddition = () => {
     if (form.color && form.size) {
-      dispatch(addToCart({...productData, color: form.color, size: form.size}));
-      dispatch(openModal('cart'));
+      addToCart({...productData, color: form.color, size: form.size});
+      openModal('cart');
     }
   };
 
   return (
     <div className={styles.wrapper}>
       <div>
-        {!isLoading && <Image src={productData.image} alt="image" fill={true}/>}
+        {!isLoading && <Image src={productData?.image} alt="image" fill={true}/>}
       </div>
       <div>
-        <h5>{productData.material}</h5>
-        <h1>{productData.title}</h1>
-        <h4>{productData.description}</h4>
+        <h5>{productData?.material}</h5>
+        <h1>{productData?.title}</h1>
+        <h4>{productData?.description}</h4>
         <div>
           <h3>Select color</h3>
           <div>
@@ -63,7 +61,7 @@ export default function Product({params}) {
             )}
           </div>
         </div>
-        <h1>${productData.price}</h1>
+        <h1>${productData?.price}</h1>
         <Button
           variant='outlined'
           disabled={!form.color && !form.size}

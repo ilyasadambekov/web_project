@@ -1,16 +1,15 @@
 'use client';
-import FiltersBlock from "@/components/FiltersBlock/FiltersBlock";
-import ProductsList from "@/components/ProductsList/ProductsList";
+import FiltersBlock from "../../components/FiltersBlock/FiltersBlock";
+import ProductsList from "../../components/ProductsList/ProductsList";
 import {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {setQuery} from "@/store/filtersSlice";
+import {useActions} from '../../hooks/useActions';
 import styles from './page.module.scss';
 
 export default function Shop() {
-  const dispatch = useDispatch();
+  const {setQuery} = useActions();
 
   useEffect(() => {
-    dispatch(setQuery(''));
+   setQuery('');
   }, []);
 
   return (

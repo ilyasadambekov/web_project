@@ -1,29 +1,29 @@
 import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useGetProductsQuery} from "@/store/api";
-import {clearFilters, setMaterial, setPrice, setSortBy} from "@/store/filtersSlice";
+import {useGetProductsQuery} from "../../store/api";
+import {useAppSelector} from '../../hooks/useAppSelector';
+import {useActions} from '../../hooks/useActions';
 import {FaCheck} from "react-icons/fa6";
-import Button from "@/components/Button";
-import Input from "@/components/Input/Input";
-import styles from '@/components/FiltersBlock/FiltersBlock.module.scss';
+import Button from "../Button";
+import Input from "../Input/Input";
+import styles from './FiltersBlock.module.scss';
 
 export default function FiltersBlock() {
   const [priceRange, setPriceRange] = useState({
     min: '',
     max: ''
   });
-  const filters = useSelector(state => state.filters);
-  const {data: productsData = [], isLoading} = useGetProductsQuery();
-  const dispatch = useDispatch();
+  const filters = useAppSelector(state => state.filters);
+  const {data: productsData, isLoading} = useGetProductsQuery();
+  const {setPrice, clearFilters, setSortBy, setMaterial} = useActions();
 
   const handlePriceRange = () => {
     if (priceRange.min && priceRange.max) {
-      dispatch(setPrice(priceRange));
+      setPrice(priceRange);
     }
   };
 
   const clear = () => {
-    dispatch(clearFilters());
+    clearFilters();
     setPriceRange({
       min: '',
       max: ''
@@ -40,7 +40,7 @@ export default function FiltersBlock() {
             variant="text"
             autoWidth
             style={{textDecoration: filters.sortBy === item && 'underline'}}
-            onClick={() => dispatch(setSortBy(item))}
+            onClick={() => setSortBy(item)}
           >
             {item}
           </Button>
@@ -49,13 +49,13 @@ export default function FiltersBlock() {
       <div>
         <h4>Material</h4>
         {isLoading ? <h3>...</h3> : (
-          [...new Map(productsData.map(item => [item['material'], item])).values()].map(item => item.material).map((item, i) =>
+          [...new Map(productsData.map(item => [item.material, item])).values()].map((item: Product) => item.material).map((item, i) =>
             <Button
               key={i}
               variant="text"
               autoWidth
               style={{textDecoration: filters.material === item && 'underline'}}
-              onClick={() => dispatch(setMaterial(item))}
+              onClick={() => setMaterial(item)}
             >
               {item}
             </Button>
@@ -69,7 +69,6 @@ export default function FiltersBlock() {
             className={styles.input}
             type="number"
             placeholder="min"
-            width="100px"
             value={priceRange.min}
             onChange={e => setPriceRange({...priceRange, min: e.target.value})}
           />

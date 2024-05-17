@@ -1,7 +1,23 @@
-'use client'
-import {$class} from "@/utils";
-import Clickable from "@/components/Clickable";
+'use client';
+import {$class} from "../../utils";
+import Clickable from "../Clickable";
 import './index.scss';
+
+type ButtonVariant = 'primary' | 'secondary' | 'outlined' | 'text'
+
+interface IProps {
+  children: React.ReactNode,
+  className?: string,
+  style?: React.CSSProperties,
+  variant?: ButtonVariant,
+  rippleColor?: string,
+  loading?: boolean,
+  disabled?: boolean,
+  height?: number,
+  width?: number,
+  autoWidth?: boolean,
+  onClick?: () => void
+}
 
 const Button = ({
   children,
@@ -15,7 +31,7 @@ const Button = ({
   width,
   autoWidth,
   onClick
-}) => {
+}: IProps) => {
   return (
     <Clickable
       rippleColor={rippleColor ? rippleColor : variant === 'secondary' ? 'black' : 'white'}

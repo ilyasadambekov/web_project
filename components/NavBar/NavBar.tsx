@@ -1,21 +1,21 @@
 'use client';
-import {openModal} from "@/store/modalSlice";
-import {useDispatch} from "react-redux";
+import {useActions} from '../../hooks/useActions';
 import {useEffect, useRef, useState} from "react";
 import {usePathname, useRouter} from "next/navigation";
-import {FaCartShopping, FaShop, FaUser} from "react-icons/fa6";
+import {FaArrowRightToBracket, FaCartShopping, FaShop, FaUser} from "react-icons/fa6";
+import {useAppSelector} from '../../hooks/useAppSelector';
 import Link from "next/link";
-import SearchBar from "@/components/SearchBar/SearchBar";
-import Button from "@/components/Button";
+import SearchBar from "../SearchBar/SearchBar";
+import Button from "../Button";
 import anime from "animejs";
 import Letterize from "letterizejs";
-import styles from '/components/NavBar/NavBar.module.scss';
-
+import styles from './NavBar.module.scss';
 
 export default function NavBar() {
-  const [bgColor, setBGColor] = useState('transparent');
-  const logoRef = useRef();
-  const dispatch = useDispatch();
+  const [bgColor, setBGColor] = useState<string>('transparent');
+  const logoRef = useRef<HTMLDivElement>(null);
+  const {user} = useAppSelector(state => state.auth);
+  const {openModal, logOutUser} = useActions();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -24,7 +24,7 @@ export default function NavBar() {
 
     const logo = new Letterize({
       targets: logoElement
-    })
+    });
 
     const animation = anime.timeline({
       targets: logo.listAll,
@@ -59,7 +59,7 @@ export default function NavBar() {
       logoElement.removeEventListener('mouseenter', handleMouseEnter);
       window.removeEventListener('scroll', handleBGColor);
     };
-  }, [])
+  }, []);
 
   return (
     <div className={styles.wrapper} style={pathname === '/' ? {backgroundColor: bgColor} : null}>
@@ -71,25 +71,49 @@ export default function NavBar() {
 
       <div>
         <Button
+          height={48}
+          width={48}
           variant="outlined"
-          autoWidth
           onClick={() => router.push('/shop')}>
           <FaShop/>
         </Button>
 
         <Button
+          height={48}
+          width={48}
           variant="outlined"
-          autoWidth
-          onClick={() => dispatch(openModal({name: 'auth', position: 'center'}))}>
-          <FaUser/>
-        </Button>
-
-        <Button
-          variant="outlined"
-          autoWidth
-          onClick={() => dispatch(openModal({name: 'cart', position: 'right'}))}>
+          onClick={() => openModal({name: 'cart', position: 'right'})}>
           <FaCartShopping/>
         </Button>
+
+        {!user && (
+          <Button
+            height={48}
+            width={48}
+            variant="outlined"
+            onClick={() => openModal({name: 'auth', position: 'center'})}>
+            <FaUser/>
+          </Button>
+        )}
+
+        {user && (
+          <>
+            <Button
+              height={48}
+              autoWidth
+              variant="outlined">
+              {user.email}
+            </Button>
+
+            <Button
+              height={48}
+              width={48}
+              variant="outlined"
+              onClick={logOutUser}>
+              <FaArrowRightToBracket/>
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );

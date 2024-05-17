@@ -1,21 +1,20 @@
-import {setQuery} from "@/store/filtersSlice";
 import {useState} from "react";
-import {useDispatch} from "react-redux";
 import {useRouter} from "next/navigation";
+import {useActions} from '../../hooks/useActions';
 import {FaSearch} from "react-icons/fa";
-import Input from "@/components/Input/Input";
-import Button from "@/components/Button";
-import styles from '@/components/SearchBar/SearchBar.module.scss';
+import Input from "../Input/Input";
+import Button from "../Button";
+import styles from './SearchBar.module.scss';
 
 export default function SearchBar() {
   const [request, setRequest] = useState('');
+  const {setQuery} = useActions();
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     if (request && request.replace(/\s/g, '').length) {
-      dispatch(setQuery(request));
+      setQuery(request);
       setRequest('');
       router.push('/shop');
     }

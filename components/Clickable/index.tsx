@@ -1,19 +1,27 @@
 import React, { useRef } from 'react';
-import {$class} from "@/utils";
+import {$class} from "../../utils";
 import anime from 'animejs';
 import './index.scss';
+
+interface IProps {
+  onClick?: () => void,
+  rippleColor?: string,
+  className?: string,
+  style?: React.CSSProperties,
+  children: React.ReactNode,
+  disabled?: boolean
+}
 
 const Clickable = ({
   onClick,
   rippleColor = 'black',
-  id,
   className,
   style,
   children,
   disabled,
-}) => {
-  const elRef = useRef(null);
-  const pointerRef = useRef(null);
+}: IProps) => {
+  const elRef = useRef<HTMLButtonElement | null>(null);
+  const pointerRef = useRef<HTMLDivElement | null>(null);
 
   const onUp = () => {
     anime({
@@ -56,7 +64,6 @@ const Clickable = ({
 
   return (
     <button
-      id={id}
       ref={elRef}
       onTouchStart={onDown}
       onMouseDown={onDown}
