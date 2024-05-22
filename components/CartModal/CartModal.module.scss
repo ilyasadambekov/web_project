@@ -1,9 +1,11 @@
 .cartModal {
-  height: 100vh;
+  height: 100%;
   width: 400px;
   background-color: rgba(0,0,0,.5);
   backdrop-filter: blur(20px);
   border-left: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
   right: -400px;
@@ -15,38 +17,34 @@
     right: 0;
   }
 
-  .header {
+  .top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 48px;
   }
 
-  .body {
+  .list {
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: space-between;
+    overflow-y: scroll;
+    overflow-x: hidden;
     gap: 36px;
+  }
 
-    >div:first-of-type {
-      overflow-y: scroll;
-      overflow-x: hidden;
+  .bottom {
+    display: flex;
+    flex-direction: column;
 
-      >h3 {
-        text-align: center;
-      }
-    }
-
-    >div:nth-of-type(2) {
-
-      >div {
-        border-bottom: 1px solid #7a7a7a;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-bottom: 8px;
-        margin-bottom: 32px;
-      }
+    >div {
+      border-bottom: 1px solid #7a7a7a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      margin-bottom: 32px;
     }
   }
 }

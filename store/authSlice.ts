@@ -9,6 +9,13 @@ import {
 import {auth} from "../firebase";
 import toast from "react-hot-toast";
 
+enum AuthActionTypes {
+  REGISTER_USER = 'auth/registerUser',
+  LOGIN_USER = 'auth/logInUser',
+  LOGOUT_USER = 'auth/logOutUser',
+  CHECK_AUTH_STATUS = 'auth/checkAuthStatus',
+}
+
 interface AuthState {
   user: User | null,
   status: 'idle' | 'loading' | 'succeeded' | 'failed',
@@ -26,8 +33,8 @@ interface AuthCredentials {
   password: string
 }
 
-export const registerUser = createAsyncThunk<User, AuthCredentials, {rejectValue: string}>(
-  'auth/registerUser',
+export const registerUser = createAsyncThunk<User, AuthCredentials, { rejectValue: string }>(
+  AuthActionTypes.REGISTER_USER,
   async ({email, password}, {rejectWithValue}) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -40,8 +47,8 @@ export const registerUser = createAsyncThunk<User, AuthCredentials, {rejectValue
   }
 );
 
-export const logInUser = createAsyncThunk<User, AuthCredentials, {rejectValue: string}>(
-  'auth/loginUser',
+export const logInUser = createAsyncThunk<User, AuthCredentials, { rejectValue: string }>(
+  AuthActionTypes.LOGIN_USER,
   async ({email, password}, {rejectWithValue}) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -54,8 +61,8 @@ export const logInUser = createAsyncThunk<User, AuthCredentials, {rejectValue: s
   }
 );
 
-export const logOutUser = createAsyncThunk<void, void, {rejectValue: string}>(
-  'auth/logoutUser',
+export const logOutUser = createAsyncThunk<void, void, { rejectValue: string }>(
+  AuthActionTypes.LOGOUT_USER,
   async (_, {rejectWithValue}) => {
     try {
       await signOut(auth);
@@ -67,8 +74,8 @@ export const logOutUser = createAsyncThunk<void, void, {rejectValue: string}>(
   }
 );
 
-export const checkAuthStatus = createAsyncThunk<User | null, void, {rejectValue: string}>(
-  'auth/checkAuthStatus',
+export const checkAuthStatus = createAsyncThunk<User | null, void, { rejectValue: string }>(
+  AuthActionTypes.CHECK_AUTH_STATUS,
   async (_, {rejectWithValue}) => {
     return new Promise<User | null>((resolve, reject) => {
       onAuthStateChanged(auth, (user) => {

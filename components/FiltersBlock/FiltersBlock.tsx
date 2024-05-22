@@ -30,6 +30,9 @@ export default function FiltersBlock() {
     });
   };
 
+  const isBtnShown =
+    priceRange.min && priceRange.max && priceRange.min !== filters.price.min || priceRange.min && priceRange.max && priceRange.max !== filters.price.max;
+
   return (
     <div className={styles.wrapper}>
       <div>
@@ -79,16 +82,15 @@ export default function FiltersBlock() {
             value={priceRange.max}
             onChange={e => setPriceRange({...priceRange, max: e.target.value})}
           />
-          {priceRange.min && priceRange.max && priceRange.min !== filters.price.min || priceRange.min && priceRange.max && priceRange.max !== filters.price.max ? (
-            <Button
-              height={48}
-              width={48}
-              variant="outlined"
-              onClick={handlePriceRange}
-            >
-              <FaCheck/>
-            </Button>
-          ) : null}
+          <Button
+            height={48}
+            width={48}
+            variant="outlined"
+            style={{opacity: isBtnShown ? '1' : '0'}}
+            onClick={handlePriceRange}
+          >
+            <FaCheck/>
+          </Button>
         </div>
       </div>
       {filters.query || filters.sortBy || filters.material || filters.price.min && filters.price.max ? (

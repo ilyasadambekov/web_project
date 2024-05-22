@@ -1,13 +1,19 @@
 'use client';
 import {useState} from "react";
 import {useActions} from '../../../hooks/useActions';
+import {$class, $shimmer} from '../../../utils';
 import {useGetProductQuery} from "../../../store/api";
 import Image from "next/image";
 import Button from "../../../components/Button";
 import styles from './page.module.scss';
 
+interface IForm {
+  color: ProductColor | null;
+  size: ProductSize | null;
+}
+
 export default function Product({params}: {params: {id: string}}) {
-  const [form, setForm] = useState({color: '', size: ''});
+  const [form, setForm] = useState<IForm>({color: null, size: null});
   const {data: productData = null, isLoading} = useGetProductQuery(params.id);
   const {addToCart, openModal} = useActions();
 
@@ -20,17 +26,17 @@ export default function Product({params}: {params: {id: string}}) {
 
   return (
     <div className={styles.wrapper}>
-      <div>
+      <div className={$class(styles.image, $shimmer(isLoading))}>
         {!isLoading && <Image src={productData?.image} alt="image" fill={true}/>}
       </div>
       <div>
-        <h5>{productData?.material}</h5>
-        <h1>{productData?.title}</h1>
-        <h4>{productData?.description}</h4>
-        <div>
+        <h5 className={$shimmer(isLoading, 'text')}>{productData?.material}</h5>
+        <h1 className={$shimmer(isLoading, 'text')}>{productData?.title}</h1>
+        <h4 className={$shimmer(isLoading, 'text')}>{productData?.description}</h4>
+        <div className={styles.selectBlock}>
           <h3>Select color</h3>
           <div>
-            {['Black', 'White'].map((item, i) =>
+            {['Black', 'White'].map((item: ProductColor, i) =>
               <Button
                 key={i}
                 height={48}
@@ -44,10 +50,10 @@ export default function Product({params}: {params: {id: string}}) {
             )}
           </div>
         </div>
-        <div>
+        <div className={styles.selectBlock}>
           <h3>Select size</h3>
           <div>
-            {['XS', 'S', 'M', 'L', 'XL'].map((item, i) =>
+            {['XS', 'S', 'M', 'L', 'XL'].map((item: ProductSize, i) =>
               <Button
                 key={i}
                 height={48}
@@ -61,10 +67,12 @@ export default function Product({params}: {params: {id: string}}) {
             )}
           </div>
         </div>
-        <h1>${productData?.price}</h1>
+        <div className={styles.price}>
+          $<span className={$shimmer(isLoading, 'text')}>{productData?.price}</span>
+        </div>
         <Button
           variant='outlined'
-          disabled={!form.color && !form.size}
+          disabled={!form.color || !form.size || !productData}
           onClick={handleAddition}
         >
           <h3>ADD TO THE CART</h3>

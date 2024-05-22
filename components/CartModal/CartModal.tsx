@@ -8,11 +8,11 @@ import styles from '../CartModal/CartModal.module.scss';
 
 export default function CartModal({isActive, close}: ModalProps) {
   const [loading, setLoading] = useState(false);
-  const cart = useAppSelector(state => state.cart);
+  const {cartItems} = useAppSelector(state => state.cart);
 
   return (
     <div className={$class(styles.cartModal, [styles.cartModalActive, isActive])}>
-      <div className={styles.header}>
+      <div className={styles.top}>
         <h2>My Cart</h2>
         <Button
           height={36}
@@ -23,24 +23,24 @@ export default function CartModal({isActive, close}: ModalProps) {
           <FaXmark/>
         </Button>
       </div>
-      <div className={styles.body}>
-        <div>
-          {!cart.products.length ? <h3>Your cart is empty</h3> : (
-            cart.products.map(item => <CartItem key={item.id} item={item}/>)
-          )}
-        </div>
-        {cart.products.length &&
-          <div>
-            <div>
-              <h4>Total</h4>
-              <h3>${cart.products.map(item => parseInt(item.price) * item.amount).reduce((a, b) => a + b, 0)}</h3>
-            </div>
-            <Button variant='secondary' loading={loading} onClick={() => setLoading(true)}>
-              Proceed to checkout
-            </Button>
-          </div>
-        }
+
+      <div className={styles.list}>
+        {!cartItems.length ? <h3>Your cart is empty</h3> : (
+          cartItems.map(item => <CartItem key={item.id} item={item}/>)
+        )}
       </div>
+
+      {cartItems.length && (
+        <div className={styles.bottom}>
+          <div>
+            <h4>Total</h4>
+            <h3>${cartItems.map(item => parseInt(item.price) * item.amount).reduce((a, b) => a + b, 0)}</h3>
+          </div>
+          <Button variant='secondary' loading={loading} onClick={() => setLoading(true)}>
+            Proceed to checkout
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

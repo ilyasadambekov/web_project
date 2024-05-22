@@ -1,29 +1,23 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-type ActiveModal = {
-  name: 'auth' | 'cart',
-  position: string
-}
+type ModalName = 'auth' | 'cart'
 
 interface ModalState {
-  activeModal: null | ActiveModal,
-  isOpen: boolean,
+  activeModal: null | ModalName,
+  isOpen: boolean
 }
 
 const initialState: ModalState = {
   activeModal: null,
-  isOpen: false,
-}
+  isOpen: false
+};
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal(state, action: PayloadAction<ActiveModal>) {
-      state.activeModal = {
-        name: action.payload.name,
-        position: action.payload.position
-      };
+    openModal(state, action: PayloadAction<ModalName>) {
+      state.activeModal = action.payload;
       state.isOpen = true;
     },
     closeModal(state) {

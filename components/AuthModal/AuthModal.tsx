@@ -11,42 +11,30 @@ export default function AuthModal({isActive, close}: ModalProps) {
   const [view, setView] = useState<'login' | 'reg'>('login');
   const [form, setForm] = useState({
     email: '',
-    pass: ''
+    password: ''
   });
   const {status} = useAppSelector(state => state.auth);
   const {logInUser, registerUser} = useActions();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setForm({...form, [e.target.name]: e.target.value});
 
-  const handleLogin = async () => {
-    await logInUser({email: form.email, password: form.pass});
-  };
-
-  const handleRegister = async () => {
-    await registerUser({email: form.email, password: form.pass});
-  };
-
   useEffect(() => {
     setForm({
       email: '',
-      pass: ''
+      password: ''
     });
   }, [view]);
-
-  useEffect(() => {
-    if (status === 'succeeded') close();
-  }, [status]);
 
   const LoginForm = () => {
     return (
       <div className={styles.form}>
         <h1>Welcome back</h1>
         <Input type="email" placeholder="Email" name="email" value={form.email} onChange={onChange}/>
-        <Input type="password" placeholder="Password" name="pass" value={form.pass} onChange={onChange}/>
+        <Input type="password" placeholder="Password" name="password" value={form.password} onChange={onChange}/>
         <Button
           variant="secondary"
           loading={status === 'loading'}
-          onClick={handleLogin}
+          onClick={() => logInUser(form)}
         >
           Log in
         </Button>
@@ -65,11 +53,11 @@ export default function AuthModal({isActive, close}: ModalProps) {
       <div className={styles.form}>
         <h1>Become a member</h1>
         <Input type="email" placeholder="Email" name="email" value={form.email} onChange={onChange}/>
-        <Input type="password" placeholder="Password" name="pass" value={form.pass} onChange={onChange}/>
+        <Input type="password" placeholder="Password" name="password" value={form.password} onChange={onChange}/>
         <Button
           variant="secondary"
           loading={status === 'loading'}
-          onClick={handleRegister}
+          onClick={() => registerUser(form)}
         >
           Sign in
         </Button>

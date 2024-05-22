@@ -8,7 +8,6 @@ import styles from './ProductsList.module.scss';
 export default function ProductsList({amountOfItemsOnPage}: {amountOfItemsOnPage: number}) {
   const [page, setPage] = useState(0);
   const {data: productsData = [], isLoading} = useGetProductsQuery();
-  console.log(productsData);
   const {query, sortBy, material, price} = useAppSelector(state => state.filters);
 
   const filteredItems = () => {

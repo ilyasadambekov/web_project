@@ -11,13 +11,30 @@ import anime from "animejs";
 import Letterize from "letterizejs";
 import styles from './NavBar.module.scss';
 
+const NavButton = ({icon, onClick}: { icon: React.ReactNode, onClick: () => void }) => {
+  return (
+    <Button
+      height={48}
+      width={48}
+      variant="outlined"
+      onClick={onClick}>
+      {icon}
+    </Button>
+  );
+};
+
 export default function NavBar() {
   const [bgColor, setBGColor] = useState<string>('transparent');
   const logoRef = useRef<HTMLDivElement>(null);
   const {user} = useAppSelector(state => state.auth);
+  const {cartItems} = useAppSelector(state => state.cart);
   const {openModal, logOutUser} = useActions();
   const pathname = usePathname();
   const router = useRouter();
+
+  const cartItemsAmount = cartItems.length
+    ? cartItems.map(item => item.amount).reduce((a, b) => a + b)
+    : 0;
 
   useEffect(() => {
     const logoElement = logoRef.current;
@@ -66,35 +83,15 @@ export default function NavBar() {
       <Link href="/">
         <h1 ref={logoRef}>.adamb</h1>
       </Link>
-
       <SearchBar/>
-
       <div>
-        <Button
-          height={48}
-          width={48}
-          variant="outlined"
-          onClick={() => router.push('/shop')}>
-          <FaShop/>
-        </Button>
+        <NavButton icon={<FaShop/>} onClick={() => router.push('/shop')}/>
+        <div className={styles.cartBtn}>
+          <NavButton icon={<FaCartShopping/>} onClick={() => openModal('cart')}/>
+          <div>{cartItemsAmount}</div>
+        </div>
 
-        <Button
-          height={48}
-          width={48}
-          variant="outlined"
-          onClick={() => openModal({name: 'cart', position: 'right'})}>
-          <FaCartShopping/>
-        </Button>
-
-        {!user && (
-          <Button
-            height={48}
-            width={48}
-            variant="outlined"
-            onClick={() => openModal({name: 'auth', position: 'center'})}>
-            <FaUser/>
-          </Button>
-        )}
+        {!user && <NavButton icon={<FaUser/>} onClick={() => openModal('auth')}/>}
 
         {user && (
           <>
@@ -104,14 +101,7 @@ export default function NavBar() {
               variant="outlined">
               {user.email}
             </Button>
-
-            <Button
-              height={48}
-              width={48}
-              variant="outlined"
-              onClick={logOutUser}>
-              <FaArrowRightToBracket/>
-            </Button>
+            <NavButton icon={<FaArrowRightToBracket/>} onClick={logOutUser}/>
           </>
         )}
       </div>

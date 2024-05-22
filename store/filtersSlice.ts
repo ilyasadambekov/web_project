@@ -20,35 +20,35 @@ const initialState: FiltersState = {
     min: '',
     max: ''
   }
-}
+};
 
 const filtersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
     setQuery(state, action: PayloadAction<string>) {
-      state.query = action.payload
+      state.query = action.payload;
     },
     setSortBy(state, action: PayloadAction<string>) {
-      state.sortBy = action.payload
+      state.sortBy = action.payload;
     },
     setMaterial(state, action: PayloadAction<string>) {
-      state.material = action.payload
+      state.material = action.payload;
     },
     setPrice(state, action: PayloadAction<Price>) {
-      state.price = action.payload
+      state.price = action.payload;
     },
     clearFilters(state) {
-      state.query = ''
-      state.sortBy = ''
-      state.material = ''
+      state.query = '';
+      state.sortBy = '';
+      state.material = '';
       state.price = {
         min: '',
         max: ''
-      }
+      };
     }
   }
-})
+});
 
 export const filtersActions = filtersSlice.actions;
 

@@ -1,18 +1,24 @@
 import {FaMinus, FaPlus, FaXmark} from "react-icons/fa6";
 import {useActions} from '../../hooks/useActions';
-import Link from "next/link";
+import Link from 'next/link';
 import Image from "next/image";
 import Button from "../Button";
 import styles from '../CartItem/CartItem.module.scss'
 
+
 export default function CartItem({item}: {item: Product}) {
-  const {closeModal, terminateFromCart, removeFromCart, addToCart} = useActions();
+  const {
+    closeModal,
+    terminateFromCart,
+    removeFromCart,
+    addToCart
+  } = useActions();
 
   return (
     <div className={styles.wrapper}>
       <div>
         <div>
-          <Link href={`/shop/${item.id}`} onClick={closeModal}>
+          <Link href={`/shop/${item.id}`} className={styles.image} onClick={closeModal}>
             <Image src={item.image} alt='image' fill={true}/>
           </Link>
           <Button
@@ -40,7 +46,7 @@ export default function CartItem({item}: {item: Product}) {
           >
             <FaMinus/>
           </Button>
-          <div><h4>{item.amount}</h4></div>
+          <h4>{item.amount}</h4>
           <Button
             variant='text'
             autoWidth

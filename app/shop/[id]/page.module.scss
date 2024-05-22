@@ -8,8 +8,8 @@
   padding: 100px 32px;
   margin: 0 auto;
 
-  > div:first-of-type {
-    height: 100%;
+  .image {
+    height: 600px;
     width: 600px;
     position: relative;
 
@@ -24,7 +24,7 @@
     flex-direction: column;
     gap: 24px;
 
-    > div {
+    .selectBlock {
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -33,6 +33,16 @@
         display: flex;
         align-items: center;
         gap: 8px;
+      }
+    }
+
+    .price {
+      color: #fff;
+      font-size: 24px;
+      display: flex;
+
+      span {
+        flex: 1;
       }
     }
   }

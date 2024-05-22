@@ -13,7 +13,10 @@ export const store = configureStore({
     modal: modalReducer,
     auth: authReducer
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(api.middleware)
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    thunk: true,
+    serializableCheck: false
+  }).concat(api.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>

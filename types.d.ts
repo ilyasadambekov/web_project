@@ -1,3 +1,7 @@
+type ProductColor = 'Black' | 'White'
+
+type ProductSize = 'XS' | 'S' | 'M' | 'L' | 'XL'
+
 type Product = {
   title: string;
   description: string;
@@ -8,8 +12,8 @@ type Product = {
   image: string;
   rating: number;
   id: string;
-  color?: 'Black' | 'White';
-  size?: 'XS' | 'S' | 'M' | 'L' | 'XL';
+  color?: ProductColor;
+  size?: ProductSize;
 }
 
 type ModalProps = {

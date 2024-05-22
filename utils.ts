@@ -5,4 +5,8 @@ const $class = (...classes: any[]) => {
     .join(' ');
 };
 
-export { $class };
+const $shimmer = (loading = true, type: 'block' | 'text'  = 'block') => {
+  return $class('shimmer', ['shimmer--active', loading], `shimmer--${type}`);
+};
+
+export { $class, $shimmer };

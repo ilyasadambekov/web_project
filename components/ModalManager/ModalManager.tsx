@@ -21,7 +21,7 @@ export default function ModalManager() {
     }, 200);
   };
 
-  const ModalBody = modals[activeModal?.name] ? modals[activeModal.name] : () => null;
+  const ModalBody = modals?.[activeModal] ? modals[activeModal] : () => null;
 
   return (
     <>
